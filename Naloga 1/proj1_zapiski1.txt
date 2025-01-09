@@ -1,0 +1,15 @@
+% komentar (katero omrežje je to) 
+% pripravil Urban Matjaž
+*vertices 37 (37 je število vozlišč)
+1 "GO"
+2 "PP"
+3 "CA"
+...
+37 "TA"
+*arcs (ker so povezave usmerjene, če niso je edges)
+1 5
+...
+*edges
+
+
+shrani kot .net
