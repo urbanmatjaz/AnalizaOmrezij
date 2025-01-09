@@ -1,0 +1,54 @@
+---
+title: "MATJAZ_URBAN"
+author: "Urban Matjaž"
+date: "`r Sys.Date()`"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, packages & libraries, include=FALSE, echo=FALSE, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE, echo=FALSE, warning = FALSE, message = FALSE}
+library(igraph)
+```
+
+```{r}
+source("https://raw.githubusercontent.com/bavla/Rnet/master/R/Pajek.R")
+# corrected layers file - removed (...)
+R <- read.table("london_transport_layers.txt",stringsAsFactors=FALSE,header=TRUE)
+L <- read.table("london_transport_multiplex.edges",header=FALSE)
+N <- read.table("london_transport_nodes.txt",stringsAsFactors=FALSE,header=TRUE)
+
+net <- file("London.net","w")
+n <- nrow(N)
+cat("% London",date(),"\n*vertices",n,"\n",file=net)
+for(i in 1:n) cat(i,' "',N$nodeLabel[i],'" ',N$nodeLong[i],' ',N$nodeLat[i],' 0\n',sep="",file=net)
+for(i in 1:nrow(R)) cat("*edges :",i,' "',R$layerLabel[i],'"\n',sep="",file=net)
+cat("*edges\n",file=net)
+for(i in 1:nrow(L)) cat(L$V1[i],": ",L$V2[i]+1," ",L$V3[i]+1," ",L$V4[i],"\n",sep="",file=net)
+close(net)
+```
+
+
+
+```{r}
+network = read_graph("London_test.net", format = "pajek")
+
+summary(network)
+# Calculate betweenness centrality
+betweenness_scores <- betweenness(network, normalized = TRUE)
+
+# Plot the network with vertex sizes based on betweenness
+plot(network, vertex.size = betweenness_scores * 100, main = "Network Visualization")
+```
+
+
+Omrežje neusmerjeno
+
+Nima zank
+
+Nima vzporednih povezav
+
