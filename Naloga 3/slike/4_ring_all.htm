@@ -1,0 +1,64 @@
+<HTML>
+ <HEAD>
+  <TITLE>12. Extracting N6 according to C18 [1-3] (71)</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.2"><!--
+/*
+* This function turns on/off various layers of the SVG picture.
+* It is called when the user clicks on any of the checkboxes in
+* the form below.
+*
+* Input Parameters:
+*   checkbox     - Form object (checkbox) that was clicked on.
+*   element_name - SVG element name that should be made visible/
+*                  invisible.
+*/
+function hilite_elem (checkbox, element_name)
+{
+   var svgobj;
+   var svgstyle;
+   var svgdoc = document.network.getSVGDocument();
+  // For selected element, get the elements style object, then set
+  // its visibility according to the state of the checkbox.
+   svgobj = svgdoc.getElementById(element_name);
+   if (!checkbox.checked)
+   { // Hide layer.
+      svgobj.setAttribute('display', 'none');
+   }
+   else
+   { // Show layer.
+      svgobj.setAttribute('display', 'inline');
+   }
+}
+// -->
+</SCRIPT>
+ </HEAD>
+<BODY bgcolor="#fffff4" text="black" link="brown" vlink="mahogany" alink="blue">
+ <center>
+ <table><tr><td>
+  <EMBED SRC="4_ring_all.svg" NAME="network"
+   HEIGHT="1168.00" WIDTH="1936.00"
+   TYPE="image/svg+xml"
+   PLUGINSPAGE="http://www.adobe.com/svg/viewer/install/">
+ </td><td>
+<FORM NAME="hilite_form">
+ <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="2" WIDTH="100%">
+  <TR>
+   <TD><INPUT TYPE="checkbox" VALUE="" ONCLICK="hilite_elem(this,'c0')">Lines among clusters</TD></tr>
+   <TD><INPUT TYPE="checkbox" VALUE="" ONCLICK="hilite_elem(this,'c1')">1</TD></tr>
+   <TD><INPUT TYPE="checkbox" VALUE="" ONCLICK="hilite_elem(this,'c2')">2</TD></tr>
+   <TD><INPUT TYPE="checkbox" VALUE="" ONCLICK="hilite_elem(this,'c3')">3</TD></tr>
+ </TABLE>
+ <SCRIPT><!--
+  // Make sure all checkboxes are checked whenever the page
+  // is reloaded in the browser.
+    for (var i = 0;  i < document.hilite_form.elements.length;  i++)
+      if (document.hilite_form.elements[i].type == 'checkbox')
+        document.hilite_form.elements[i].checked = true;
+  // -->
+ </SCRIPT>
+</FORM>
+</td></tr>
+ </table>
+ </center>
+</BODY>
+</HTML>
